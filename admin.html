@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Dashboard - Restaurant App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="assets/js/auth.js"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+  <header class="bg-blue-600 text-white p-4 flex justify-between items-center">
+    <h1 class="text-xl font-semibold">Admin Dashboard</h1>
+    <button id="logoutBtn" class="bg-red-500 hover:bg-red-600 px-3 py-1 rounded">Logout</button>
+  </header>
+  <main class="p-6">
+    <section>
+      <h2 class="text-lg font-semibold mb-4">Welcome, Admin</h2>
+      <nav class="space-x-4 mb-6">
+        <a href="laporan.html" class="text-blue-600 hover:underline">Laporan Penjualan</a>
+        <a href="menu.html" class="text-blue-600 hover:underline">Kelola Menu</a>
+        <a href="user-management.html" class="text-blue-600 hover:underline">Manajemen User</a>
+      </nav>
+      <p>Use the links above to manage the restaurant system.</p>
+    </section>
+  </main>
+  <script>
+    // Check user role and redirect if not admin
+    document.addEventListener('DOMContentLoaded', () => {
+      const userRole = sessionStorage.getItem('userRole');
+      if (userRole !== 'admin') {
+        window.location.href = 'index.html';
+      }
+      const logoutBtn = document.getElementById('logoutBtn');
+      logoutBtn.addEventListener('click', () => {
+        sessionStorage.clear();
+        window.location.href = 'index.html';
+      });
+    });
+  </script>
+</body>
+</html>

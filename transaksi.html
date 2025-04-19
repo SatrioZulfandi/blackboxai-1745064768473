@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Transaksi - Restaurant App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="assets/js/auth.js"></script>
+  <script defer src="assets/js/transaksi.js"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+  <header class="bg-yellow-600 text-white p-4 flex justify-between items-center">
+    <h1 class="text-xl font-semibold">Transaksi</h1>
+    <button id="logoutBtn" class="bg-red-500 hover:bg-red-600 px-3 py-1 rounded">Logout</button>
+  </header>
+  <main class="p-6 max-w-4xl mx-auto">
+    <section>
+      <h2 class="text-lg font-semibold mb-4">Daftar Menu Terpilih</h2>
+      <table class="w-full bg-white rounded shadow">
+        <thead>
+          <tr class="bg-yellow-300">
+            <th class="p-2 text-left">Nama Menu</th>
+            <th class="p-2 text-left">Harga</th>
+            <th class="p-2 text-left">Jumlah</th>
+            <th class="p-2 text-left">Subtotal</th>
+            <th class="p-2 text-left">Aksi</th>
+          </tr>
+        </thead>
+        <tbody id="transactionTableBody"></tbody>
+      </table>
+      <div class="mt-4 flex justify-between items-center">
+        <p class="text-lg font-semibold">Total: Rp <span id="totalPrice">0</span></p>
+        <button id="printBtn" class="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700 transition">Cetak Nota</button>
+      </div>
+    </section>
+  </main>
+  <script>
+    // Check user role and redirect if not kasir or pelanggan
+    document.addEventListener('DOMContentLoaded', () => {
+      const userRole = sessionStorage.getItem('userRole');
+      if (userRole !== 'kasir' && userRole !== 'pelanggan') {
+        window.location.href = 'index.html';
+      }
+      const logoutBtn = document.getElementById('logoutBtn');
+      logoutBtn.addEventListener('click', () => {
+        sessionStorage.clear();
+        window.location.href = 'index.html';
+      });
+    });
+  </script>
+</body>
+</html>

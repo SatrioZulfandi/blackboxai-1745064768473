@@ -13,20 +13,28 @@
       font-family: 'Inter', sans-serif;
     }
   </style>
+  <link rel="stylesheet" href="assets/css/custom.css" />
 </head>
 <body class="bg-gray-100 min-h-screen">
   <header class="bg-green-600 text-white p-4 flex justify-between items-center">
     <h1 class="text-xl font-semibold">Kasir Dashboard</h1>
     <button id="logoutBtn" class="bg-red-500 hover:bg-red-600 px-3 py-1 rounded">Logout</button>
   </header>
-  <main class="p-6">
+  <main class="p-6 max-w-3xl mx-auto">
     <section>
-      <h2 class="text-lg font-semibold mb-4">Welcome, Kasir</h2>
-      <nav class="space-x-4 mb-6">
-        <a href="transaksi.html" class="text-green-600 hover:underline">Catat Transaksi</a>
-        <a href="menu.html" class="text-green-600 hover:underline">Daftar Menu</a>
+      <button onclick="window.history.back()" class="mb-4 bg-gray-300 hover:bg-gray-400 text-gray-800 px-3 py-1 rounded">← Back</button>
+      <h2 class="text-2xl font-semibold mb-6">Welcome, Kasir</h2>
+      <nav class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+        <a href="transaksi.html" class="block bg-white rounded shadow p-6 text-center hover:shadow-lg transition">
+          <i class="fas fa-cash-register text-green-600 text-3xl mb-2"></i>
+          <p class="text-lg font-semibold text-green-700">Catat Transaksi</p>
+        </a>
+        <a href="menu.html" class="block bg-white rounded shadow p-6 text-center hover:shadow-lg transition">
+          <i class="fas fa-list text-green-600 text-3xl mb-2"></i>
+          <p class="text-lg font-semibold text-green-700">Daftar Menu</p>
+        </a>
       </nav>
-      <p>Use the links above to record transactions and view the menu.</p>
+      <p class="text-gray-700">Use the links above to record transactions and view the menu.</p>
     </section>
   </main>
   <script>

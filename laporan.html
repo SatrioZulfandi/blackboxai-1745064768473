@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Laporan Penjualan - Restaurant App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="assets/js/auth.js"></script>
+  <script defer src="assets/js/laporan.js"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+  <header class="bg-blue-700 text-white p-4 flex justify-between items-center">
+    <h1 class="text-xl font-semibold">Laporan Penjualan</h1>
+    <button id="logoutBtn" class="bg-red-500 hover:bg-red-600 px-3 py-1 rounded">Logout</button>
+  </header>
+  <main class="p-6 max-w-5xl mx-auto">
+    <section class="mb-6">
+      <h2 class="text-lg font-semibold mb-4">Filter Tanggal</h2>
+      <form id="filterForm" class="flex space-x-4 items-center">
+        <div>
+          <label for="startDate" class="block font-medium mb-1">Tanggal Mulai</label>
+          <input type="date" id="startDate" required class="border border-gray-300 rounded px-3 py-2" />
+        </div>
+        <div>
+          <label for="endDate" class="block font-medium mb-1">Tanggal Akhir</label>
+          <input type="date" id="endDate" required class="border border-gray-300 rounded px-3 py-2" />
+        </div>
+        <button type="submit" class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800 transition">Tampilkan</button>
+      </form>
+    </section>
+    <section>
+      <h2 class="text-lg font-semibold mb-4">Laporan Transaksi</h2>
+      <table class="w-full bg-white rounded shadow">
+        <thead>
+          <tr class="bg-blue-300">
+            <th class="p-2 text-left">Tanggal</th>
+            <th class="p-2 text-left">Jumlah Transaksi</th>
+            <th class="p-2 text-left">Total Penjualan (Rp)</th>
+          </tr>
+        </thead>
+        <tbody id="reportTableBody"></tbody>
+      </table>
+      <p class="mt-4 text-right font-semibold">Total Keseluruhan: Rp <span id="grandTotal">0</span></p>
+    </section>
+  </main>
+  <script>
+    // Check user role and redirect if not admin
+    document.addEventListener('DOMContentLoaded', () => {
+      const userRole = sessionStorage.getItem('userRole');
+      if (userRole !== 'admin') {
+        window.location.href = 'index.html';
+      }
+      const logoutBtn = document.getElementById('logoutBtn');
+      logoutBtn.addEventListener('click', () => {
+        sessionStorage.clear();
+        window.location.href = 'index.html';
+      });
+    });
+  </script>
+</body>
+</html>
